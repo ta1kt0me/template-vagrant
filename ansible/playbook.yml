@@ -6,7 +6,16 @@
     rbenv_root: /usr/local/rbenv
     ansible_rbenv_root: /usr/local/ansible-rbenv
     # ruby_version: 2.1.2
+    # openssl passwd -salt wonderland -1 rabbit
+    password: $1$wonderla$3olSVxIWLe6LfDH9rkEsF.
   tasks:
-    - include: tasks/rbenv.yml
-    - include: tasks/ruby.yml ruby_version=2.1.2
-    - include: tasks/ruby.yml ruby_version=2.0.0-p481
+    - name: install package
+      apt: pkg={{ item }} state=latest install_recommends=no
+      with_items:
+        - git
+        - zsh
+        - vim
+    - user: name=alice password={{ password }} shell=/bin/zsh state=present append=yes groups=sudo
+    #- include: tasks/rbenv.yml
+    #- include: tasks/ruby.yml ruby_version=2.1.2
+    #- include: tasks/ruby.yml ruby_version=2.0.0-p481
