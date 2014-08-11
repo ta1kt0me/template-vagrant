@@ -5,7 +5,6 @@
   vars:
     rbenv_root: /usr/local/rbenv
     ansible_rbenv_root: /usr/local/ansible-rbenv
-    # ruby_version: 2.1.2
     # openssl passwd -salt wonderland -1 rabbit
     password: $1$wonderla$3olSVxIWLe6LfDH9rkEsF.
   tasks:
